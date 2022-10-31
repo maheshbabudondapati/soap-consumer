@@ -1,5 +1,0 @@
-
-// to string generated code
-    public String toString() {
-        return "Ex1ToString(x=" + this.x + ", y=" + this.y + ", flag=" + this.flag + ")";
-    }
