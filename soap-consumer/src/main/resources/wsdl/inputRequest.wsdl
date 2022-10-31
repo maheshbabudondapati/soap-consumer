@@ -1,0 +1,42 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.mahesh.com/spring/soap/api/inputRequest" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.mahesh.com/spring/soap/api/inputRequest" targetNamespace="http://www.mahesh.com/spring/soap/api/inputRequest">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.mahesh.com/spring/soap/api/inputRequest">
+            <xsd:element name="SoapRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="message" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Acknowledgement">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="resultcode" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="SoapRequest">
+        <wsdl:part element="tns:SoapRequest" name="SoapRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="PostMessage">
+        <wsdl:operation name="Soap">
+            <wsdl:input message="tns:SoapRequest" name="SoapRequest"> </wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PostMessageSoap11" type="tns:PostMessage">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Soap">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="SoapRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PostMessageService">
+        <wsdl:port binding="tns:PostMessageSoap11" name="PostMessageSoap11">
+            <soap:address location="http://localhost:8091/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

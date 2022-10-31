@@ -1,0 +1,1 @@
+CREATE TABLE request (id SERIAL PRIMARY KEY, message VARCHAR(255), request_id  integer);
